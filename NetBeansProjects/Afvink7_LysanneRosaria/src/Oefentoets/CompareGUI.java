@@ -114,21 +114,41 @@ public class CompareGUI extends JFrame implements ActionListener
      *
      * @return
      */
-    public String compareFile()
+    public String compareFile(int i)
     {
-        String inhoud = "";
-
+        String inhoud1 = "";
+        String inhoud2 = "";
         try
         {
-            inFile = new BufferedReader(new FileReader(textField1.getText()));
-            area.setText("");
-            String line;
-            while ((line = inFile.readLine()) != null) {
-                area.append(line + "\n");
-                inhoud = inhoud + line + "\n";
+            if (i == 1) {
+                inFile = new BufferedReader(new FileReader(textField1.getText()));
+                area.setText("");
+                String line1;
+                while ((line1 = inFile.readLine()) != null) {
+                    area.append(line1 + "\n");
+                    inhoud1 = inhoud1 + line1 + "\n";
+                }
+                System.out.println(inhoud1);
+                inFile.close();
             }
-            System.out.println(inhoud);
-            inFile.close();
+            else if (i == 2)
+            {
+                inFile = new BufferedReader(new FileReader(textField1.getText()));
+                area.setText("");
+                String line2;
+                while ((line2 = inFile.readLine()) != null)
+                {
+
+                    area.append(line2 + "\n");
+                    inhoud2 = inhoud2 + line2 + "\n";
+                }
+                System.out.println(inhoud2);
+                inFile.close();
+            }
+            else if (i == 3)
+            {
+
+            }
         }
         catch (IOException e)
         {
@@ -152,7 +172,7 @@ public class CompareGUI extends JFrame implements ActionListener
             {
                 selectedFile = fileChooser.getSelectedFile();
                 textField1.setText(selectedFile.getAbsolutePath());  //path die in File object selectedFile wordt gestopt, geprint in het textField nameField
-                compareFile();
+                compareFile(1);
             }
         }
 
@@ -164,13 +184,13 @@ public class CompareGUI extends JFrame implements ActionListener
             {
                 selectedFile = fileChooser.getSelectedFile();
                 textField1.setText(selectedFile.getAbsolutePath());  //path die in File object selectedFile wordt gestopt, geprint in het textField nameField
-                compareFile();
+                compareFile(2);
             }
         }
 
         if (event.getSource() == button3)
         {
-            compareFile();
+            compareFile(3);
         }
 
 
