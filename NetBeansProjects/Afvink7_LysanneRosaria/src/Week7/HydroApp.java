@@ -17,16 +17,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
+import javax.swing.*;
+
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -41,6 +34,7 @@ public class HydroApp extends JFrame implements ActionListener
    private JPanel panel;
    private JFileChooser fileChooser;
    private BufferedReader inFile;
+   private JScrollPane scroll;          //scroll declareren
    
     /**
      *
@@ -89,8 +83,10 @@ public class HydroApp extends JFrame implements ActionListener
         textField1 = new JTextField("");
         button1 = new JButton("Browse");
         button2 = new JButton("Analyse");
-        area = new JTextArea();
+        area = new JTextArea(10,30);        //dimenties textarea aangeven (in characters)
         panel = new JPanel();
+        scroll = new JScrollPane(area);     //scroll definieren en verwijzen naar textarea waarvoor de scrollbalken nodig zijn
+
         
         panel.setBackground(Color.white);
         panel.setPreferredSize(new Dimension(310,100));
@@ -99,9 +95,9 @@ public class HydroApp extends JFrame implements ActionListener
         window.add(textField1);
         window.add(button1);
         window.add(label2);
-        window.add(area);
         window.add(button2);
         window.add(panel);
+        window.add(scroll);     //scroll op frame zetten, let op, geen area op frame zetten!!
         
         button1.addActionListener(this);
         button2.addActionListener(this);
